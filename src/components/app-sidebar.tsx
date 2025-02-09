@@ -26,7 +26,7 @@ export function AppSidebar() {
           Bencana Alert
         </h1>
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="p-4">
         <SidebarMenu>
           {menuItems.map((item) => (
             <SidebarMenuItem key={item.title}>
