@@ -1,80 +1,92 @@
 "use client";
-
-import Head from "next/head";
-import { useState } from "react";
-import { AlertTriangle, Info, Thermometer, Droplets, Wind } from "lucide-react";
 import { Header } from "@/components/Header";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
 
 export default function Home() {
-  const [alerts, setAlerts] = useState([
-    { id: 1, type: "warning", message: "Potential flooding in coastal areas" },
-    {
-      id: 2,
-      type: "info",
-      message: "Moderate rainfall expected in the next 24 hours",
-    },
-  ]);
-
-  const [weatherData, setWeatherData] = useState({
-    temperature: 28,
-    humidity: 75,
-    windSpeed: 15,
-  });
-
   return (
     <div>
-      <Header/>
-      <Head>
-        <title>Bencana Alert Dashboard</title>
-        <meta name="description" content="Dashboard for Bencana Alert system" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <Header />
+      <div className="px-4 py-6 max-w-2xl mx-auto text-gray-800">
+        <h2 className="text-2xl font-bold mb-4">Laporan Bencana Alam</h2>
+        <form className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="disasterType">Jenis Bencana</Label>
+            <Select>
+              <SelectTrigger>
+                <SelectValue placeholder="Pilih jenis bencana" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="flood">Banjir</SelectItem>
+                <SelectItem value="earthquake">Gempa Bumi</SelectItem>
+                <SelectItem value="landslide">Tanah Longsor</SelectItem>
+                <SelectItem value="tsunami">Tsunami</SelectItem>
+                <SelectItem value="volcano">Letusan Gunung Berapi</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-6">
-        <div className="bg-white p-4 rounded-lg shadow">
-          <h2 className="text-lg font-semibold mb-2">Temperature</h2>
-          <div className="flex items-center">
-            <Thermometer className="text-red-500 mr-2" />
-            <span className="text-2xl">{weatherData.temperature}°C</span>
+          <div className="space-y-2">
+            <Label htmlFor="location">Lokasi</Label>
+            <Input
+              id="location"
+              name="location"
+              placeholder="Masukkan lokasi bencana"
+            />
           </div>
-        </div>
-        <div className="bg-white p-4 rounded-lg shadow">
-          <h2 className="text-lg font-semibold mb-2">Humidity</h2>
-          <div className="flex items-center">
-            <Droplets className="text-blue-500 mr-2" />
-            <span className="text-2xl">{weatherData.humidity}%</span>
-          </div>
-        </div>
-        <div className="bg-white p-4 rounded-lg shadow">
-          <h2 className="text-lg font-semibold mb-2">Wind Speed</h2>
-          <div className="flex items-center">
-            <Wind className="text-gray-500 mr-2" />
-            <span className="text-2xl">{weatherData.windSpeed} km/h</span>
-          </div>
-        </div>
-      </div>
 
-      <h2 className="text-2xl font-bold mb-4">Active Alerts</h2>
-      <div className="grid gap-4">
-        {alerts.map((alert) => (
-          <div
-            key={alert.id}
-            className={`p-4 rounded-lg flex items-center ${
-              alert.type === "warning" ? "bg-yellow-100" : "bg-blue-100"
-            }`}>
-            {alert.type === "warning" ? (
-              <AlertTriangle className="text-yellow-700 mr-3" />
-            ) : (
-              <Info className="text-blue-700 mr-3" />
-            )}
-            <span
-              className={
-                alert.type === "warning" ? "text-yellow-700" : "text-blue-700"
-              }>
-              {alert.message}
-            </span>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="date">Tanggal</Label>
+              <Input id="date" name="date" type="date" />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="time">Waktu</Label>
+              <Input id="time" name="time" type="time" />
+            </div>
           </div>
-        ))}
+
+          <div className="space-y-2">
+            <Label htmlFor="description">Deskripsi</Label>
+            <Textarea
+              id="description"
+              name="description"
+              placeholder="Jelaskan situasi bencana"
+              rows={4}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="reporterName">Nama Pelapor</Label>
+            <Input
+              id="reporterName"
+              name="reporterName"
+              placeholder="Masukkan nama Anda"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="contactInfo">Informasi Kontak</Label>
+            <Input
+              id="contactInfo"
+              name="contactInfo"
+              placeholder="Nomor telepon atau email"
+            />
+          </div>
+
+          <Button type="submit" className="w-full">
+            Kirim Laporan
+          </Button>
+        </form>
       </div>
     </div>
   );
