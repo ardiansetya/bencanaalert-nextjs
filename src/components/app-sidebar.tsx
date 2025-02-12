@@ -8,9 +8,10 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import Link from "next/link";
 
 const menuItems = [
-  { icon: Home, title: "Dashboard", href: "/" },
+  { icon: Home, title: "Dashboard", href: "/dashboard" },
   { icon: Bell, title: "Alerts", href: "/alerts" },
   { icon: Map, title: "Map", href: "/map" },
   { icon: BarChart, title: "Statistics", href: "/statistics" },
@@ -22,9 +23,11 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className="p-4">
-        <h1 className="text-2xl font-bold text-sidebar-foreground transition-all duration-300 group-data-[collapsible=icon]:opacity-0 group-data-[collapsible=icon]:invisible group-data-[collapsible=icon]:h-0 group-data-[collapsible=icon]:overflow-hidden">
-          Bencana Alert
-        </h1>
+        <Link href={"/"}>
+          <h1 className="text-2xl font-bold text-sidebar-foreground transition-all duration-300 group-data-[collapsible=icon]:opacity-0 group-data-[collapsible=icon]:invisible group-data-[collapsible=icon]:h-0 group-data-[collapsible=icon]:overflow-hidden">
+            Bencana Alert
+          </h1>
+        </Link>
       </SidebarHeader>
       <SidebarContent className="p-4">
         <SidebarMenu>
