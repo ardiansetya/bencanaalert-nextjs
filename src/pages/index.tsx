@@ -14,7 +14,7 @@ import { Label } from "@/components/ui/label";
 
 export default function Home() {
   return (
-    <div>
+    <div className="">
       <Header />
       <div className="px-4 py-6 max-w-2xl mx-auto text-gray-800">
         <h2 className="text-2xl font-bold mb-4">Laporan Bencana Alam</h2>
@@ -83,9 +83,11 @@ export default function Home() {
             />
           </div>
 
-          <Button type="submit" className="w-full">
-            Kirim Laporan
-          </Button>
+          <div className="flex justify-end items-end">
+            <Button type="submit" className="">
+              Kirim Laporan
+            </Button>
+          </div>
         </form>
       </div>
     </div>
